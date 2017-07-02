@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   NativeModules,
   Platform,
@@ -7,7 +7,7 @@ import {
   requireNativeComponent,
   View,
   ViewPropTypes
-} from "react-native";
+} from 'react-native';
 
 const BarCodeScannerManager =
   NativeModules.ExponentBarCodeScannerManager ||
@@ -15,11 +15,11 @@ const BarCodeScannerManager =
 
 function convertNativeProps(props) {
   const newProps = { ...props };
-  if (typeof props.torchMode === "string") {
+  if (typeof props.torchMode === 'string') {
     newProps.torchMode = BarCodeScanner.Constants.TorchMode[props.torchMode];
   }
 
-  if (typeof props.type === "string") {
+  if (typeof props.type === 'string') {
     newProps.type = BarCodeScanner.Constants.Type[props.type];
   }
 
@@ -84,7 +84,7 @@ export default class BarCodeScanner extends React.Component {
 export const Constants = BarCodeScanner.Constants;
 
 const ExponentBarCodeScanner = requireNativeComponent(
-  "ExponentBarCodeScanner",
+  'ExponentBarCodeScanner',
   BarCodeScanner,
   {
     nativeOnly: {
