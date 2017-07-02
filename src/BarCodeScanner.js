@@ -1,12 +1,13 @@
-import React, { PropTypes } from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 import {
   NativeModules,
   Platform,
   StyleSheet,
   requireNativeComponent,
   View,
-  ViewPropTypes,
-} from 'react-native';
+  ViewPropTypes
+} from "react-native";
 
 const BarCodeScannerManager =
   NativeModules.ExponentBarCodeScannerManager ||
@@ -14,11 +15,11 @@ const BarCodeScannerManager =
 
 function convertNativeProps(props) {
   const newProps = { ...props };
-  if (typeof props.torchMode === 'string') {
+  if (typeof props.torchMode === "string") {
     newProps.torchMode = BarCodeScanner.Constants.TorchMode[props.torchMode];
   }
 
-  if (typeof props.type === 'string') {
+  if (typeof props.type === "string") {
     newProps.type = BarCodeScanner.Constants.Type[props.type];
   }
 
@@ -31,7 +32,7 @@ export default class BarCodeScanner extends React.Component {
   static Constants = {
     BarCodeType: BarCodeScannerManager.BarCodeType,
     Type: BarCodeScannerManager.Type,
-    TorchMode: BarCodeScannerManager.TorchMode,
+    TorchMode: BarCodeScannerManager.TorchMode
   };
 
   static propTypes = {
@@ -39,13 +40,13 @@ export default class BarCodeScanner extends React.Component {
     onBarCodeRead: PropTypes.func,
     barCodeTypes: PropTypes.array,
     torchMode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    type: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    type: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   };
 
   static defaultProps = {
     type: BarCodeScannerManager.Type.back,
     torchMode: BarCodeScannerManager.TorchMode.off,
-    barCodeTypes: Object.values(BarCodeScannerManager.BarCodeType),
+    barCodeTypes: Object.values(BarCodeScannerManager.BarCodeType)
   };
 
   setNativeProps(props) {
@@ -83,11 +84,11 @@ export default class BarCodeScanner extends React.Component {
 export const Constants = BarCodeScanner.Constants;
 
 const ExponentBarCodeScanner = requireNativeComponent(
-  'ExponentBarCodeScanner',
+  "ExponentBarCodeScanner",
   BarCodeScanner,
   {
     nativeOnly: {
-      onBarCodeRead: true,
-    },
+      onBarCodeRead: true
+    }
   }
 );
